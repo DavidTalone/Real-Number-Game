@@ -1,4 +1,5 @@
 import data.nat.prime
+import data.real.basic
 open nat
 
 theorem sqrt_two_irrational_V1 {a b : ℕ} (co : gcd a b = 1) : a^2 ≠ 2 * b^2 :=

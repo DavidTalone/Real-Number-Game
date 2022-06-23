@@ -33,14 +33,14 @@ then it's also an upper bound for $X$.
 -/
 lemma upper_bounds_mono (X Y : set ℝ) (h1 : X ⊆ Y) (b : ℝ) : is_upper_bound Y b → is_upper_bound X b :=
 begin
-  intro h2,
-  intro a,
-  intro ha,
-  apply h2,
-  change ∀ a, a ∈ X → a ∈ Y at h1,
---  unfold has_subset.subset set.subset at h1,
+  intro h,
+  intro j,
+  intro k,
+  apply h,
+  change ∀j, j ∈ X → j ∈ Y at h1,
   apply h1,
-  exact ha,
+  exact k,
 end
 
 end xena -- hide
+

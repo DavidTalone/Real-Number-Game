@@ -13,6 +13,16 @@ An interesting result to prove.
 -/
 
 
+-- You will need to use lemma 
+--mul_le_mul (hac : a ≤ c) (hbd : b ≤ d) (nn_b : 0 ≤ b) (nn_c : 0 ≤ c) : 
+--a * b ≤ c * d
+
+
+
+theorem pow_nonneg {a : ℝ } (H : 0 ≤ a) : ∀ (n : ℕ), 0 ≤ a ^ n
+| 0     := zero_le_one
+| (n+1) := mul_nonneg H (pow_nonneg _)
+
 
 /- Lemma
 For any two non-negative real numbers $a$ and $b$, we have that
@@ -43,10 +53,10 @@ begin
 
     exact le_trans h1 h5,
     intro j,
-    --need to introduce pow_nonneg and probably hint at using it also (sqrt_le h1 h2).mpr
+   
     have h1 : 0 ≤ a ^ 2, exact pow_nonneg ha 2,
     have h2 : 0 ≤ b ^ 2, exact pow_nonneg hb 2,
-    have h3 := (sqrt_le h1 h2).mpr j,
+    have h3 := (sqrt_le h1 h2).2 j,
     have h4 := sqrt_sqr ha, 
     have h5 := sqrt_sqr hb,
     rw h4 at h3,

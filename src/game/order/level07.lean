@@ -20,9 +20,14 @@ You may use this result in the Lean mathlib library:
 
 -/
 
-/- Axiom : irrational_sqrt_two : irrational (sqrt 2)
--/
+/- Axiom : irrational_sqrt_two : irrational (sqrt 2) 
 
+theorem irrational_neg_iff : irrational (-x) ↔ irrational x 
+
+.2 after irrational_neg_iff gives the left side of the biconditional
+
+existsi in this case brings up 0 to the rational numbers.
+-/
 
 /- Lemma
 Not true that for any $a$, $b$, irrational numbers, the sum is 

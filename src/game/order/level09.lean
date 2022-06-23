@@ -1,4 +1,8 @@
 import game.order.level08
+import game.order.level02
+import game.order.dumb
+import game.order.lessdumb
+import game.order.twocase
 open real
 
 namespace xena -- hide
@@ -58,6 +62,7 @@ begin
         have h01 := abs_mul_abs_self b,
         rw pow_two _, rw pow_two _, symmetry, exact h01,
     rw [Ha, Hb] at H2,
+
     split,
     intro j,
     rw j at H2, rw H3 at H2, simp at H2,
@@ -70,6 +75,8 @@ begin
     have g3 : |a * b| = -(a * b),
     exact abs_of_neg hn,
     rw g at g3, linarith,
+
+    --add hints and comments and stuff
     intro k,
     have g : |a * b| = a * b,
     exact abs_of_nonneg k,
@@ -86,10 +93,43 @@ begin
     have hb : 0 ≤ |b|,  exact is_absolute_value.abv_nonneg abs b,
     have hc : 0 ≤ |a| + |b|, linarith,
     have G := eq_sqr_to_eq ( |a + b| ) ( |a| + |b| ) hab hc H2, exact G,
+    
 end
 
 end xena -- hide
 
+
+
+/-
+have g : |a * b| = a * b,
+    exact abs_of_nonneg k,
+    have g2 : |a * b| = |a| * |b|,
+    exact abs_mul _ _,
+    rw g2 at g, rw mul_assoc 2 a b at H2,
+    rw ← g at H2,
+    have g3 : |a| ^ 2 + 2 * ( |a| * |b| ) + |b| ^ 2 = ( |a| + |b| )^2, ring,
+    rw g3 at H2,
+    have g4 : sqrt ( |a + b| ^ 2 ) = sqrt ( |a + b| ^ 2), refl,
+    rw H2 at g4 {occs := occurrences.pos [2]},
+    have hab : 0 ≤ |a + b|,  exact is_absolute_value.abv_nonneg abs (a+b),
+    have ha : 0 ≤ |a|,  exact is_absolute_value.abv_nonneg abs a,
+    have hb : 0 ≤ |b|,  exact is_absolute_value.abv_nonneg abs b,
+    have hc : 0 ≤ |a| + |b|, linarith,
+    have G := eq_sqr_to_eq ( |a + b| ) ( |a| + |b| ) hab hc H2, exact G,
+
+
+    have g := abs_prod_eq_prod_iff_prod_nonneg a b,
+    intro k,
+    simp at k,
+    revert k,
+    rw g,
+    intro k,
+    have l := prod_nonneg_iff_eq_sign a b,
+    have p := reallydumb a b,
+    rw p,
+    have ha : 0 ≤ |a|,  exact is_absolute_value.abv_nonneg abs a,
+    have hb : 0 ≤ |b|,  exact is_absolute_value.abv_nonneg abs b,
+-/
 
 
 

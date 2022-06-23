@@ -20,6 +20,9 @@ definition abs {α : Type u} [decidable_linear_ordered_add_comm_group α] (a : �
 For ease of use, a notation can be wrapped around that definition as below.
 -/
 
+/- Hint : Cases, Cases, Cases!
+-/
+
 notation `|` x `|` := abs x
 
 /- Lemma

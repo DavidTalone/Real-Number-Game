@@ -1,4 +1,6 @@
 import data.real.basic
+import tactic
+import algebra.ring
 
 /-
 # Chapter 1 : Sets
@@ -13,6 +15,31 @@ in the left side bar.
 Note that you may need to change the type of some quantities from rationals to reals.
 Lean doesn't necessarily consider the rational $2$ to be the same at the real number $2$.
 Some of the axioms on the left make working with the casts from rationals to reals easier.
+-/
+
+/-
+This is a very difficult proof to think out but with a little bit of assistance it does become possible.
+One recommendation is doing the proof in math terms first. We will provide the math proof for you
+but you will have to make sense of it yourself. If you don't want to see the proof then you should
+skip the following paragraph.
+
+(Spoiler)
+The mathematical proof goes as follows. 
+
+let r1 and r2 ∈ ℝ s.t. r1 < r2
+Then r2 - r1 > 0
+
+By the Archimedean Property ∃ n ∈ ℕ s.t. 1 / n < r2 - r1,
+so 1 < nr2 - nr1
+
+Then using has_ceiling we get ∃ m ∈ ℤ s.t. 
+nr1 < m < nr2
+
+finally we get that r1 < m / n < r2
+(End Spoiler)
+
+Hints:
+use inv_prod_self, archimedean_R, has_ceiling, as well as norm_num and possibly norm_cast.
 -/
 
 
@@ -48,13 +75,78 @@ Rationals are dense in the reals.
 theorem rat_dense_in_R : dense_in_R embedded_rationals := 
 begin
   intros h j k,
-  have y := lt_trichotomy h 0,
-  cases y with l r, swap, 
-  cases r with b c,
-  rw b at k,
-  have g := archimedean_R j k,
-  cases g with n hn, cases hn with hnl hnr,
-  
+  have x : 0 < j - h,
+  simp,
+  exact k,
+  have p := archimedean_R (j - h),
+  have t := p(x),
+  cases t with n hn,
+  cases hn with v hv,
+  --have V : 1 < ↑n * (j - h),
+  have v1 : 0 < (n : ℝ), simp, exact v,
+  have g : 0 < (j - h - 1 / (n : ℝ)), linarith,
+  have s : 0 < (n : ℝ) * (j - h - 1 / (n : ℝ)),
+  revert g,
+  revert v1,
+  exact mul_pos,
+
+  have F := has_ceiling ((n : ℝ) * (j - h - 1 / (n : ℝ))),
+  cases F with m hm,
+  cases hm with z hz,
+  have J : j - h - 1 / (n : ℝ) = j + (-h) + (-1 / (n : ℝ)),
+  ring,
+  rw J at s,
+  rw add_assoc at s,
+  rw left_distrib at s,
+  rw left_distrib at s,
+  field_simp at s,
+  have L : - (n : ℝ) / (n : ℝ) = -1,
+  ring,
+  rw inv_mul_cancel,
+  linarith,
+  rw L at s,
+  ring at s,
+  ring at s,
+  simp at s,
+  have P : (j - h) = (j + (-h)),
+  linarith,
+  rw P at s,
+  rw right_distrib at s,
+  have D := has_ceiling (h * ↑n),
+  cases D with r hr,
+  cases hr with b hb,
+  have U : ↑r ≤ h * ↑n + 1,
+  linarith,
+  use (↑r / ↑n : ℚ),
+  split,
+  unfold embedded_rationals,
+  use (↑r / ↑n : ℚ),
+  unfold set.Ioo,
+  split,
+  have Y : (h * ↑n) * (1 / ↑n) < ↑r * (1 / ↑n),
+  finish,
+  rw mul_assoc at Y,
+  rw mul_comm ↑n _ at Y,
+  rw inv_prod_self at Y,
+  swap,
+  exact v,
+  rw mul_one at Y,
+  field_simp at Y,
+  norm_num,
+  exact Y,
+  have HO : ↑r < j * ↑n,
+  linarith,
+  have O :  ↑r * (1 / ↑n) < (j * ↑n) * (1 / ↑n),
+  finish,
+  rw mul_assoc at O,
+  rw mul_comm ↑n _ at O,
+  rw inv_prod_self at O,
+  swap,
+  exact v,
+  rw mul_one at O,
+  field_simp at O,
+  norm_num,
+  exact O,
 
 end
 
@@ -78,7 +170,7 @@ intros x y hxy,
     cases H with xL xr, swap, cases xr with x0 xR,
     -- case x = 0
     rw x0 at hxy, 
-    have G := archimedean_R y hxy,
+    have G :=archimedean_R  y hxy,
     cases G with n hn, cases hn with hnL hnR,
     use (1/n), split, existsi (1/n : ℚ), norm_num,
     split, swap, exact hnR, rw x0, norm_num, exact hnL,
@@ -127,4 +219,24 @@ intros x y hxy,
     have h3 : x + (1/n : ℝ) < x + (y-x), linarith,
     have h4 : x + (y-x) = y, norm_num, rw h4 at h3,
     linarith, done
+
+
+
+
+    intros h j k,
+  have x : 0 < j - h,
+  simp,
+  exact k,
+  have p := archimedean_R (j - h),
+  have t := p(x),
+  cases t with n hn,
+  cases hn with v hv,
+  have v1 : 0 < ↑n,
+  linarith,
+  have g : 0 < (j - h - 1 / ↑n),
+  linarith,
+  have s : 0 < ↑n * (j - h - 1 / ↑n),
+  revert v1,
+  revert g,
+  have b := mul_pos (0 < (j - h - 1 / ↑n)) (0 < ↑n),
 -/

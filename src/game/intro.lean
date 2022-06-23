@@ -1,7 +1,9 @@
 /-
 # The Real Number Game, version 1.0beta
 
-## By Kevin Buzzard, Dan Stanescu and Gavin Thomson
+## Started by Kevin Buzzard, Dan Stanescu and Gavin Thomson
+
+## Finished by David Talone, Christian Kolker, and Jon Bannonj
 
 # What is this game?
 

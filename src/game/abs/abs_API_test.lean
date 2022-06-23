@@ -44,14 +44,14 @@ theorem abs_of_nonneg (h : 0 ≤ a) : abs a = a :=
 begin
   rw abs_def,
   apply max_eq_left,
-  linarith
+  linarith,
 end
 
 theorem abs_of_nonpos (h : a ≤ 0) : abs a = -a :=
 begin
   rw abs_def,
   apply max_eq_right,
-  linarith
+  linarith,
 end
 
 variables (a b) -- want them explicit in the next few
@@ -97,13 +97,13 @@ begin
   rw abs_le,
   split,
   { have h := abs_sub_le_add_abs a (a - b),
-    ring at h,
+    ring_nf at h,
     linarith,
   },
   { have h := abs_sub_le_add_abs (a - b) (-b),
     rw abs_neg at h,
-    ring at h,
-    linarith
+    ring_nf at h,
+    linarith,
   }
 end
 
@@ -160,7 +160,7 @@ begin
       apply h,
       linarith
     },
-    sorry
+    sorry,
   } 
 end
 

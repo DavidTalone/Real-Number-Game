@@ -17,6 +17,9 @@ Feel free to use the triangle inequality on the real numbers,
 together with the `linarith` and `norm_num` tactics.
 -/
 
+/- Hint : a - b = a + (-b)
+-/
+
 notation `|` x `|` := abs x
 
 /- Lemma

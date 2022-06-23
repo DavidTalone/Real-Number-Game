@@ -25,6 +25,7 @@ begin
     have Hb := lim_seq_sub_const b β β hb,
     rw [sub_self β] at Hb,
     have G := lim_zero_prod (λ n, a n - α) (λ n, b n - β) Ha Hb,
+    --g1 and g2 are unnecessary
     have g1 := lim_times_const a α β ha,
     have g2 := lim_times_const b β α hb,
     -- becomes ugly, need to improve notation
