@@ -3,7 +3,7 @@
 
 ## Started by Kevin Buzzard, Dan Stanescu and Gavin Thomson
 
-## Finished by David Talone, Christian Kolker, and Jon Bannonj
+## Finished by David Talone, Christian Kolker, and Jon Bannon
 
 # What is this game?
 

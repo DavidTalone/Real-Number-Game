@@ -63,7 +63,7 @@ levels = [
 [[worlds]]
 name = "Dense Bois"
 id = 5
-parents = [3, 4]
+parents = [2, 4]
 levels = [
 	"src/game/sets/sets_level01.lean",
 	"src/game/sets/Irrat_Dense_In_Reals.lean",
