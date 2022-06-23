@@ -63,7 +63,7 @@ levels = [
 [[worlds]]
 name = "Dense Bois"
 id = 5
-parents = [2, 4]
+parents = [3, 4]
 levels = [
 	"src/game/sets/sets_level01.lean",
 	"src/game/sets/Irrat_Dense_In_Reals.lean",
@@ -115,27 +115,4 @@ id = 8
 parents = [7]
 levels = [
 	"src/game/limits/Blockus_Time.lean",
-]
-
-[[worlds]]
-name = "Limits of sequences"
-id = 9
-parents = [8]
-levels = [
-	"src/game/limits/L01defs.lean",
-	"src/game/limits/seq_lim_add.lean",
-    "src/game/limits/seq_limitTimesConst.lean",
-    "src/game/limits/seq_limitLinear.lean",
-    "src/game/limits/seq_limitZeroProd.lean",
-    "src/game/limits/seq_limSeqSub.lean",
-    "src/game/limits/seq_limitProd.lean",
-    "src/game/limits/seq_proveLimit.lean",
-    "src/game/limits/seq_cauchyBdd.lean",
-    "src/game/limits/seq_convCauchy.lean",
-  	"src/game/limits/bounded_if_convergent.lean",
-    "src/game/limits/shift_rule_seq.lean",
-	"src/game/limits/seq_bdd_iff_range_bdd.lean",
-    "src/game/limits/bdd_monos_converge.lean"
-	"src/game/limits/Mulv2.lean",
-	"src/game/limits/lim_recip.lean",
 ]
