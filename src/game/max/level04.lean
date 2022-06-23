@@ -26,9 +26,7 @@ For any real numbers $a$ and $b$, we have $b\leq\max(a,b).$
 theorem le_max_right (a b : ℝ) : b ≤ max a b :=
 begin
   rw max_comm,
-  apply le_max_left
-
-
+  apply le_max_left,
 end
 
 end xena --hide

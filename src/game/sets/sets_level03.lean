@@ -60,10 +60,11 @@ $$ A \cap B \subseteq A.$$
 theorem intersection_subset (A B : set X) : A ∩ B ⊆ A  :=
 begin
   rw subset_iff,
-  intros x hx,
-  rw mem_inter_iff at hx,
-  tauto!, -- or cases, assumption
-
+  intro h, -- or cases, assumption
+  intro j,
+  rw mem_inter_iff at j,
+  cases j with h,
+  exact h,
 
   
 end

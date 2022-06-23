@@ -57,3 +57,10 @@ begin
     norm_num,
 end
 
+
+
+/-
+rw mem_Icc_iff,
+    split;
+    norm_num,
+-/

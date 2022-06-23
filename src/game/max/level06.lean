@@ -43,18 +43,16 @@ then ($a\leq c$ and $b\leq c$) iff $\max(a,b)\leq c.$
 theorem max_le_iff {a b c : ℝ} : a ≤ c ∧ b ≤ c ↔ max a b ≤ c :=
 begin
   split,
-  { intro h,
-    cases h with hac hbc,
-    exact max_le hac hbc
-  },
-  { intro habc,
-    split,
-    { apply le_trans _ habc,
-      apply le_max_left},
-    { apply le_trans _ habc,
-      apply le_max_right
-    }
-  }
+  intro h,
+  cases h with t ht,
+  exact max_le t ht,
+  intro j,
+  split,
+  apply le_trans _ j,
+  apply le_max_left,
+  apply le_trans _ j,
+  apply le_max_right,
+
 end
 
 end xena --hide

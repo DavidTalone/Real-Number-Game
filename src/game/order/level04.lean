@@ -25,11 +25,32 @@ $$| a - b| ≤ |a| + |b|$$.
 -/
 theorem abs_sub_le_sum_abs (a b : ℝ) : |a - b| ≤ |a| + |b| :=
 begin
-    have H : a - b = a + (-b), linarith,
+    have h : a - b = a + (-b),
+    linarith,
+    rw h,
+    have g := abs_add a (-b),
+    have j : abs (-b) = abs b,
+    norm_num,
+    rw j at g,
+    exact g,
+end
+
+end xena --hide
+
+
+
+
+
+
+
+
+
+
+
+/-
+have H : a - b = a + (-b), linarith,
     rw H, 
     have G := abs_add a (-b),
     have F : abs (-b) = abs b, norm_num,
     rw F at G, exact G, done
-end
-
-end xena --hide
+-/

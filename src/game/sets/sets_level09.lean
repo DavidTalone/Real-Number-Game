@@ -24,6 +24,21 @@ begin
   rw mem_prod_sets,
   dsimp,
   use -2,
+  split,
+  norm_num,
+  use 0,
+  split,
+  norm_num,
+  norm_num,
+end
+
+
+
+
+/-
+rw mem_prod_sets,
+  dsimp,
+  use -2,
   split, 
   { rw mem_Icc_iff,
     split; linarith
@@ -34,6 +49,4 @@ begin
     split; linarith
   },
   norm_num
-end
-
-
+-/

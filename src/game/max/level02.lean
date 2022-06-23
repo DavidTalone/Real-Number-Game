@@ -23,16 +23,10 @@ For any real numbers $a$ and $b$, we have $\max(a,b) = \max(b,a).$
 -/
 theorem max_comm (a b : ℝ) : max a b = max b a :=
 begin
-  cases le_total a b with hab hba,
-  { rw max_eq_right hab,
-    rw max_eq_left hab,
-  },
-  { rw max_eq_left hba,
-    rw max_eq_right hba
-  }  
-
-
-
+  cases le_total a b with h h;
+  rw max_eq_right h; 
+  rw max_eq_left h,
+  
 end
 
 end xena --hide

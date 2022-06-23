@@ -22,24 +22,23 @@ then $a<\max(b,c)$ iff ($a<b$ or $a<c$).
 theorem lt_max_iff {a b c : ℝ} : a < max b c ↔ a < b ∨ a < c :=
 begin
   split,
-  { intro ha,
-    cases le_total b c with hbc hcb,
-    { rw max_eq_right hbc at ha,
-      right,
-      assumption,
-    },
-    { rw max_eq_left hcb at ha,
-      left,
-      assumption
-    }
-  },
-  { intro habc,
-    cases habc with hab hac,
-    { apply lt_of_lt_of_le hab,
-      apply le_max_left},
-    { apply lt_of_lt_of_le hac,
-      apply le_max_right},
-  }
+  intro h,
+  cases le_total b c with hbc hcb,
+  rw max_eq_right at h,
+  right,
+  exact h,
+  exact hbc,
+  rw max_eq_left at h,
+  left,
+  exact h,
+  exact hcb,
+  
+  intro j,
+  cases j with d hd,
+  apply lt_of_lt_of_le d,
+  apply le_max_left,
+  apply lt_of_lt_of_le hd,
+  apply le_max_right,
 end
 
 end xena --hide

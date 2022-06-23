@@ -52,11 +52,10 @@ $$ A \subseteq A\cup B.$$
 theorem subset_union_left (A B : set X) : A ⊆ A ∪ B :=
 begin
   rw subset_iff,
-  intros x hxA,
-  rw mem_union_iff,
+  intro h,
+  intro f,
   left,
-  assumption,
-
+  exact f,
   
 end
 

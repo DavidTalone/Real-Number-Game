@@ -25,12 +25,9 @@ For any real numbers $a$ and $b$, we have $a\leq\max(a,b).$
 theorem le_max_left (a b : ℝ) : a ≤ max a b :=
 begin
   cases le_total a b with hab hba,
-  { rw max_eq_right hab,
-    assumption
-  },
-  { rw max_eq_left hba,
-    -- Lean closes a ≤ a automatically because ≤ is reflexive
-  }  
+  rw max_eq_right hab,
+  exact hab,
+  rw max_eq_left hba,
 
 
 end

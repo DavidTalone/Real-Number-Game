@@ -39,16 +39,18 @@ begin
   rw subset_iff,
   rw ext_iff,
   split,
-  { intros h x,
-    specialize h x,
-    rw mem_inter_iff,
-    tauto!
-  },
-  { intros h x hx,
-    specialize h x,
-    rw mem_inter_iff at h,
-    tauto!,
-  }
+  intro h,
+  intro j,
+  specialize h j,
+  simp_rw mem_inter_iff,
+  tauto!,
+
+  intro h,
+  intro j,
+  specialize h j,
+  simp_rw mem_inter_iff at h,
+  tauto!,
+  
 end
 
 -- begin hide
@@ -64,3 +66,19 @@ end
 -- end hide
 
 end xena -- hide
+
+/-
+rw subset_iff,
+  rw ext_iff,
+  split,
+  { intros h x,
+    specialize h x,
+    rw mem_inter_iff,
+    tauto!
+  },
+  { intros h x hx,
+    specialize h x,
+    rw mem_inter_iff at h,
+    tauto!,
+  }
+  -/

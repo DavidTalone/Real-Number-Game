@@ -27,12 +27,13 @@ also an irrational number.
 theorem not_prod_irrational : 
     ¬ ( ∀ (a b : ℝ), irrational a →  irrational b → irrational (a*b) ) :=
 begin
-  intro H,
-  have H2 := H (sqrt 2) (sqrt 2),
-  have H3 := H2 irrational_sqrt_two irrational_sqrt_two,
+  intro h,
+  have h2 := h (sqrt 2) (sqrt 2),
+  have H3 := h2 irrational_sqrt_two irrational_sqrt_two,
   apply H3,
   existsi (2 : ℚ),
-  simp, norm_num, done
+  simp,
+  norm_num,
 end
 
 end xena -- hide

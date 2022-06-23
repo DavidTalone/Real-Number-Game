@@ -25,18 +25,15 @@ then ($a<c$ and $b<c$) iff $\max(a,b)<c.$
 theorem max_lt_iff {a b c : ℝ} : a < c ∧ b < c ↔ max a b < c :=
 begin
   split,
-  { intro h,
-    cases h with hac hbc,
-    exact max_lt hac hbc
-  },
-  { intro habc,
-    split,
-    { apply lt_of_le_of_lt _ habc,
-      apply le_max_left},
-    { apply lt_of_le_of_lt _ habc,
-      apply le_max_right
-    }
-  },
+  intro h,
+  cases h with t ht,
+  exact max_lt t ht,
+  intro j,
+  split,
+  apply lt_of_le_of_lt _ j,
+  apply le_max_left,
+  apply lt_of_le_of_lt _ j,
+  apply le_max_right,
 end
 
 end xena --hide

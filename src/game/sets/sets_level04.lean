@@ -82,21 +82,19 @@ theorem subset_iff_union_eq (A : set X) (B : set X) : A ⊆ B ↔ B = A ∪ B :=
 begin
   rw subset_iff,
   split,
-  { intro h,
-    rw ext_iff,
-     -- can't rewrite under a binder
-    simp_rw mem_union_iff,
-    intro x,
-    specialize h x, -- or replace h := h x,
-    tauto! },
-  { intro h,
-    intros x hA,
-    rw h,
-    rw mem_union_iff,
-    tauto!
-  }
+  intro h,
+  rw ext_iff,
+  simp_rw mem_union_iff,
+  intro j,
+  specialize h j,
+  tauto!,
 
-
+  intro h,
+  intro k,
+  intro b,
+  rw h,
+  left,
+  exact b,
 
 end
 
@@ -114,3 +112,21 @@ end
 
 
 end xena --hide
+
+
+
+--rw subset_iff,
+  --split,
+  --{ intro h,
+    --rw ext_iff,
+     -- can't rewrite under a binder
+    --simp_rw mem_union_iff,
+    --intro x,
+    --specialize h x, -- or replace h := h x,
+    --tauto! },
+  --{ intro h,
+    --intros x hA,
+    --rw h,
+    --rw mem_union_iff,
+    --tauto!
+  --}

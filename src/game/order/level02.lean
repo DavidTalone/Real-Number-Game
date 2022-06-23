@@ -28,66 +28,54 @@ $$|ab| = |a||b|$$.
 -/
 theorem abs_prod (a b : ℝ) : |a * b| = |a| * |b| :=
 begin
-    rcases lt_trichotomy a 0 with haNeg | haZero | haPos,
+    rcases lt_trichotomy a 0 with han | haz | hap,
     swap,
-    { -- case a = 0
-        have h1 : a * b = 0, norm_num, left, exact haZero,
-        have h2 : | a * b | = 0, exact (is_absolute_value.abv_eq_zero abs).mpr h1,
-        have h3 : | a | = 0, exact (is_absolute_value.abv_eq_zero abs).mpr haZero,
-        rw [h2,h3], norm_num,
-    },
-    { -- case a < 0
-        rcases lt_trichotomy b 0 with hbNeg | hbZero | hbPos,
-        swap,
-        { -- case b = 0
-            have h1 : a * b = 0, norm_num, right, exact hbZero,
-            have h2 : | a * b | = 0, exact (is_absolute_value.abv_eq_zero abs).mpr h1,
-            have h3 : | b | = 0, exact (is_absolute_value.abv_eq_zero abs).mpr hbZero,
-            rw [h2,h3], norm_num,
-        },
-        { -- case b < 0
-            have h1 : 0 < a * b,  exact mul_pos_of_neg_of_neg haNeg hbNeg,
-            have h2 : | a * b | = a * b, exact abs_of_pos h1,
-            have h3 : | a | = - a, exact abs_of_neg haNeg,
-            have h4 : | b | = - b, exact abs_of_neg hbNeg,
-            rw [h2, h3, h4], norm_num,
-        },
-        { -- case 0 < b
-            have h1 : a * b < 0,  exact mul_neg_of_neg_of_pos haNeg hbPos,
-            have h2 : | a * b | = - (a * b), exact abs_of_neg h1,
-            have h3 : | a | = - a, exact abs_of_neg haNeg,
-            have h4 : | b | = b, exact abs_of_pos hbPos,
-            rw [h2, h3, h4], norm_num,
-        }
-
-    },
-    { -- case 0 < a
-        rcases lt_trichotomy b 0 with hbNeg | hbZero | hbPos,
-        swap,
-        { -- case b = 0
-            have h1 : a * b = 0, norm_num, right, exact hbZero,
-            have h2 : | a * b | = 0, exact (is_absolute_value.abv_eq_zero abs).mpr h1,
-            have h3 : | b | = 0, exact (is_absolute_value.abv_eq_zero abs).mpr hbZero,
-            rw [h2,h3], norm_num,
-        },
-        { -- case b < 0
-            have h1 : a * b < 0,  exact mul_neg_of_pos_of_neg haPos hbNeg,
-            have h2 : | a * b | = -( a * b), exact abs_of_neg h1,
-            have h3 : | a | = a, exact abs_of_pos haPos,
-            have h4 : | b | = - b, exact abs_of_neg hbNeg,
-            rw [h2, h3, h4], norm_num,
-        },
-        { -- case 0 < b
-            have h1 : 0 < a * b,  exact mul_pos haPos hbPos,
-            have h2 : | a * b | = a * b, exact abs_of_pos h1,
-            have h3 : | a | = a, exact abs_of_pos haPos,
-            have h4 : | b | = b, exact abs_of_pos hbPos,
-            rw [h2, h3, h4],  -- this is enough, rw closes the refl goal 
-        }
-
-    },
-    done
-
+    have h : a * b = 0, norm_num,
+    left,
+    exact haz,
+    rw h,
+    rw haz,
+    norm_num,
+    rcases lt_trichotomy b 0 with hbn | hbz | hbp,
+    swap,
+    have h : a * b = 0, norm_num,
+    right,
+    exact hbz,
+    rw h,
+    rw hbz,
+    norm_num,
+    have h1 : 0 < a * b, exact mul_pos_of_neg_of_neg han hbn,
+    have h2 : | a * b | = a * b, exact abs_of_pos h1,
+    have h3 : | a | = - a, exact abs_of_neg han,
+    have h4 : | b | = - b, exact abs_of_neg hbn,
+    rw h2, rw h3, rw h4,
+    norm_num,
+    have h1 : a * b < 0, exact mul_neg_of_neg_of_pos han hbp,
+    have h2 : | a * b | = - (a * b), exact abs_of_neg h1,
+    have h3 : | a | = - a, exact abs_of_neg han,
+    have h4 : | b | = b, exact abs_of_pos hbp,
+    rw h2, rw h3, rw h4,
+    norm_num,
+    rcases lt_trichotomy b 0 with hbn | hbz | hbp,
+    swap,
+    have h : a * b = 0, norm_num,
+    right,
+    exact hbz,
+    rw h,
+    rw hbz,
+    norm_num,
+    have h1 : a * b < 0, exact mul_neg_of_pos_of_neg hap hbn,
+    have h2 : | a * b | = - (a * b), exact abs_of_neg h1,
+    have h3 : | a | = a, exact abs_of_pos hap,
+    have h4 : | b | = - b, exact abs_of_neg hbn,
+    rw [h2,h3,h4],
+    norm_num,
+    have h1 : 0 < a * b, exact mul_pos hap hbp,
+    have h2 : | a * b | = a * b, exact abs_of_pos h1,
+    have h3 : | a | = a, exact abs_of_pos hap,
+    have h4 : | b | = b, exact abs_of_pos hbp,
+    rw [h2,h3,h4],
 end
 
 end xena --hide
+

@@ -24,7 +24,8 @@ $$ a < b \lor a = b \lor b < a$$.
 -/
 theorem trichotomy' (a b : ℝ) : a < b ∨ a = b ∨ b < a :=
 begin
-    exact lt_trichotomy a b, done
+    have j := lt_trichotomy a b,
+    exact j,
 end
 
 end xena --hide

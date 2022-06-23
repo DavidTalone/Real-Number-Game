@@ -47,7 +47,33 @@ Rationals are dense in the reals.
 -/
 theorem rat_dense_in_R : dense_in_R embedded_rationals := 
 begin
-    intros x y hxy,
+  intros h j k,
+  have y := lt_trichotomy h 0,
+  cases y with l r, swap, 
+  cases r with b c,
+  rw b at k,
+  have g := archimedean_R j k,
+  cases g with n hn, cases hn with hnl hnr,
+  
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/-
+intros x y hxy,
     have H := lt_trichotomy x 0,
     cases H with xL xr, swap, cases xr with x0 xR,
     -- case x = 0
@@ -101,4 +127,4 @@ begin
     have h3 : x + (1/n : ℝ) < x + (y-x), linarith,
     have h4 : x + (y-x) = y, norm_num, rw h4 at h3,
     linarith, done
-end
+-/

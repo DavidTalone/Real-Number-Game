@@ -42,13 +42,24 @@ The empty set is a subset of any set $A$.
 theorem empty_set_subset (A : set X) : ∅ ⊆ A :=
 begin
   rw subset_iff,
-  intros x hx,
+  intro h,
+  rw mem_empty_iff,
+  intro j,
   exfalso,
-  rw mem_empty_iff at hx,
-  exact hx,
-
+  exact j,
 
 
 end
 
 end xena
+
+
+
+/-
+rw subset_iff,
+  intros x hx,
+  exfalso,
+  rw mem_empty_iff at hx,
+  exact hx,
+
+-/

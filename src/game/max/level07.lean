@@ -22,14 +22,10 @@ then $\max(a,b)<c.$
 theorem max_lt {a b c : ℝ} (hac : a < c) (hbc : b < c) : max a b < c :=
 begin
   cases max_choice a b with ha hb,
-  { rw ha,
-    assumption
-  },
-  { rw hb,
-    assumption
-  }
-
-
+  rw ha,
+  exact hac,
+  rw hb,
+  exact hbc,
   
 end
 

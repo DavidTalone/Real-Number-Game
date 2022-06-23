@@ -86,22 +86,21 @@ def max (a b : ℝ) := if a ≤ b then b else a
 -- need if_pos to do this one
 theorem max_eq_right (hab : a ≤ b) : max a b = b :=
 begin
-  unfold max,
-  rw if_pos hab,  
+  rw max, 
+  rw if_pos hab,
 end
 
 -- need if_neg to do this one
 theorem max_eq_left (hba : b ≤ a) : max a b = a :=
 begin
   by_cases hab : a ≤ b,
-  { rw max_eq_right hab,
-    exact le_antisymm hba hab,
-  },
-  { unfold max,
-    rw if_neg hab,
-  }
+  rw max_eq_right hab,
+  exact le_antisymm hba hab,
+  rw max,
+  rw if_neg hab,
 end
 -- end hide
+
 
 /-
 All of these theorems are in the theorem statement box on the left.
@@ -118,16 +117,11 @@ or $\max(a,b) = b$.
 -/
 theorem max_choice (a b : ℝ) : max a b = a ∨ max a b = b :=
 begin
-  cases le_total a b with hab hba,
-  { right,
-    exact max_eq_right hab
-  },
-  { left,
-    exact max_eq_left hba
-  }
-
-
-
+ cases le_total a b with hab hba,
+ right,
+ exact max_eq_right hab,
+ left,
+ exact max_eq_left hba,
 end
 
 end xena --hide

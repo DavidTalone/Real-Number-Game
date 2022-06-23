@@ -31,12 +31,13 @@ also an irrational number.
 theorem not_sum_irrational : 
     ¬ ( ∀ (a b : ℝ), irrational a →  irrational b → irrational (a+b) ) :=
 begin
-  intro H,
-  have H2 := H (sqrt 2) (-sqrt 2),
-  have H3 := H2 irrational_sqrt_two (irrational_neg_iff.2 irrational_sqrt_two),
+  intro h,
+  have H := h (sqrt 2) (-sqrt 2),
+  have H3 := H irrational_sqrt_two (irrational_neg_iff.2 irrational_sqrt_two),
   apply H3,
   existsi (0 : ℚ),
-  simp, done
+  simp,
 end
 
 end xena -- hide
+

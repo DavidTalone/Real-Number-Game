@@ -72,7 +72,7 @@ lemma subset.refl (A : set X) : A ⊆ A :=
 begin
   rw subset_iff,
   intros x h,
-  exact h
+  exact h,
 end
 
 
