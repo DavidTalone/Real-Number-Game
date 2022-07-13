@@ -36,17 +36,9 @@ levels = [
 ]
 
 [[worlds]]
-name = "Abs"
+name = "Max"
 id = 3
 parents = [1]
-levels = [
-	"src/game/abs/abs_API_test.lean",
-]
-
-[[worlds]]
-name = "Max"
-id = 4
-parents = [3]
 levels = [
 	"src/game/max/level01.lean",
 	"src/game/max/level02.lean",
@@ -62,43 +54,28 @@ levels = [
 
 [[worlds]]
 name = "Dense Bois"
-id = 5
-parents = [2, 4]
+id = 4
+parents = [2, 3]
 levels = [
-	"src/game/sets/sets_level01.lean",
-	"src/game/sets/Irrat_Dense_In_Reals.lean",
+	"src/game/sets/sets_level10.lean",
 ]
 
 [[worlds]]
 name = "Sup and Inf"
-id = 6
-parents = [5]
+id = 5
+parents = [4]
 levels = [
        	 "src/game/sup_inf/level01.lean",
        	 "src/game/sup_inf/level02.lean",
        	 "src/game/sup_inf/level03.lean",
        	 "src/game/sup_inf/level04.lean",
-       	 "src/game/sup_inf/supSumSets.lean",
-       	 "src/game/sup_inf/infSumSets.lean",
-       	 "src/game/sup_inf/infSumConst.lean",
-       	 "src/game/sup_inf/supProdConst.lean",
-       	 "src/game/sup_inf/lub_prodSets.lean",
-       	 "src/game/sup_inf/supProdSets.lean",
-       	 "src/game/sup_inf/lub_rationals.lean",
-       	 "src/game/sup_inf/unbdd_iff.lean",
-       	 "src/game/sup_inf/rat_complete.lean",
-	     "src/game/sup_inf/GLBprop_if_LUBprop.lean",
 ]
 
 [[worlds]]
 name = "Completeness"
-id = 7
-parents = [6]
+id = 6
+parents = [5]
 levels = [
-	"src/game/series/tempLevel01.lean",
-    "src/game/series/tempLevel02.lean",
-    "src/game/series/tempLevel03.lean",
-    "src/game/series/tempLevel04.lean",
 	"src/game/Completeness/level01.lean",
 	"src/game/Completeness/level02.lean",
 	"src/game/Completeness/level03.lean",
@@ -106,13 +83,21 @@ levels = [
 	"src/game/Completeness/level05.lean",
 	"src/game/Completeness/level06.lean",
 	"src/game/Completeness/level07.lean",
-	"src/game/Completeness/level08.lean",
 ]
 
 [[worlds]]
-name = "Limit Stuff"
-id = 8
-parents = [7]
+name = "Limits"
+id = 7
+parents = [6]
 levels = [
+	
 	"src/game/limits/Blockus_Time.lean",
+	"src/game/Limit_Lemmas/Level01.lean",
+	"src/game/Limit_Lemmas/Level02.lean",
+	"src/game/Limit_Lemmas/Level03.lean",
+	"src/game/Limit_Lemmas/Level04.lean",
+	"src/game/Limit_Lemmas/Level05.lean",
+	"src/game/limits/Mulv2.lean",
+	"src/game/limits/lim_recip.lean",
+	"src/game/limits/lim_quo.lean",
 ]

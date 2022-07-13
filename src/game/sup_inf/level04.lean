@@ -59,30 +59,3 @@ end
 
 end xena -- hide
 
-
-
-
-
-
-
-/-
-split,
-{ intros a ha,
-  exact le_of_lt ha, 
-},
---unfold lower_bounds,
-intro b,
-intro Hb,
-refine le_of_not_gt _,
-intro Hnb,
-let c:=(b+y)/2,
---unfold upper_bounds at Hb,
-have H2 := Hb c,
-clear Hb,
-have H : c ∈ {x : ℝ | x < y},
-{ exact avg_lt_max Hnb,
-},
-have Hcleb := H2 H,
-have Hbltc : b < c := min_lt_avg Hnb,
-exact not_lt.2 Hcleb Hbltc,
--/

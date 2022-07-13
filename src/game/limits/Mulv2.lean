@@ -10,7 +10,11 @@ namespace xena -- hide
 
 local notation `|`x`|` := abs x
 
-lemma lim_prod2 (a : ℕ → ℝ) (b : ℕ → ℝ) (L  R  : ℝ)
+/-
+I don't even know where to begin with this proof. You're gonna need some luck.
+-/
+
+lemma lim_mul2 (a : ℕ → ℝ) (b : ℕ → ℝ) (L  R  : ℝ)
     (ha : is_limit a L) (hb : is_limit b R ) : 
     is_limit ( λ n, (a n) * (b n) ) (L * R) :=
 begin

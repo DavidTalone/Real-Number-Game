@@ -7,7 +7,7 @@ noncomputable theory -- hide
 namespace xena -- hide
 
 /-
-# Chapter ? : Max and abs
+# Chapter 4 : Max and abs
 
 ## Level 6
 
@@ -57,18 +57,3 @@ end
 
 end xena --hide
 
-/- Hint : Solution
-  split,
-  { intro h,
-    cases h with hac hbc,
-    exact max_le hac hbc
-  },
-  { intro habc,
-    split,
-    { apply le_trans _ habc,
-      apply le_max_left},
-    { apply le_trans _ habc,
-      apply le_max_right
-    }
-  }
--/

@@ -2,9 +2,41 @@ import data.real.basic
 import tactic
 import algebra.ring
 import game.sets.sets_level10
+import game.sets.sqrt2NotRational
 import data.real.irrational
 
-def embedded_irrationals : set ℝ := { x | ∃ r : ℝ, x = r }
+
+def embedded_irrationals : set ℝ := { x : ℝ | ¬ ∃ r : ℚ, x = (r : ℝ) }
+def Irr : set ℝ := {x | ∀ r : ℚ, x ≠ ↑r}
+
+lemma sqrt2_irrational : real.sqrt 2 ∈ Irr :=
+begin
+  intro h,
+  intro j,
+  --unfold real.sqrt at j,
+  have Y := rational_not_sqrt_two,
+  push_neg at Y,
+  have I : (real.sqrt 2) ^ 2 = 2, simp,
+  specialize Y (↑h),
+  rw j at I,
+  norm_cast at *,
+end
+
+lemma rat_minus_rat_eq_rat {a b: ℚ} : ∃c : ℚ, a - b = c :=
+begin
+  
+end
+
+lemma any_plus_irr_eq_irr {b : Irr} {a : ℚ}  : ((a : ℝ) + (b : ℝ)) ∈ Irr :=
+begin
+  intro j,
+  intro k,
+  have P : (b : ℝ) = (j : ℝ) - (a : ℝ),
+  linarith, 
+  
+  
+end
+
 
 theorem irrat_dense_in_R : dense_in_R embedded_irrationals :=
 begin
@@ -59,6 +91,11 @@ begin
   use ((↑r / ↑n) + real.sqrt 2 : ℝ),
   split,
   unfold embedded_irrationals,
+  push_neg,
+  simp,
+  intro e,
+  have B := sqrt2_irrational,
+  
   use ((↑r / ↑n) + real.sqrt 2 : ℝ),
   unfold set.Ioo,
   split,

@@ -35,7 +35,7 @@ lemma bounded_if_convergent (a : ℕ → ℝ)
     is_bounded a :=
 begin
 
-cases ha with α islim,             
+cases ha with α islim,        
 specialize islim 1 (by linarith),  -- specialise to the case ε = 1, linarith knows this is OK
 cases islim with N_k HN_k,         -- introduce the natural N_k fulfilling ε = 1 case
    
