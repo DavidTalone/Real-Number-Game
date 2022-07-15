@@ -9,11 +9,13 @@ import tactic.linarith -- hide
 namespace xena -- hide
 
 /-
-# Chapter 8 : Limit Lemmas
+# Chapter 7 : Limits
 
-## Level 4
+## Level 9
 
 
+Prove that a non-zero limit will everntually be bounded away from zero. This lemma is 
+good to use for the next level. 
 -/
 
 definition ev_bd_away_from_zero (b : ℕ → ℝ) :=

@@ -98,6 +98,13 @@ levels = [
 	"src/game/Limit_Lemmas/Level04.lean",
 	"src/game/Limit_Lemmas/Level05.lean",
 	"src/game/limits/Mulv2.lean",
+	"src/game/Limit_Lemmas/Level06.lean",
+	"src/game/Limit_Lemmas/Level07.lean",
+	"src/game/Limit_Lemmas/Level08.lean",
+	"src/game/Limit_Lemmas/Level09.lean",
 	"src/game/limits/lim_recip.lean",
 	"src/game/limits/lim_quo.lean",
+	"src/game/Completeness/level085.lean",
+	"src/game/Completeness/level09.lean",
+	"src/game/Completeness/level10.lean",
 ]

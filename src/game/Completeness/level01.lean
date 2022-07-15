@@ -5,6 +5,29 @@ import tactic.suggest
 noncomputable theory
 open_locale classical
 
+/-
+# Chapter 6 : Completeness
+
+## Level 1  
+
+
+In the Completeness world, youj will be solving proofs regarding 
+theroems and properties of bounded sets of reals.  
+
+In Lean, we define the lower bounds of a set A such that 
+∀ x : ℝ, | ∀ a ∈ A, x ≤ a. Essentially, for any number x, 
+x is less than or equal to any element a in the set A.    
+
+For the upper bounds, we define the upper bounds of a set A such that 
+∀ x : ℝ, | ∀ a ∈ A, a ≤ x. Saying that for any number x, 
+x is greater than or equal to any element a in the set A. 
+
+
+
+
+For this proof, prove that there is a unique max on a set A of real numbers.
+-/
+
 
 def up_bounds (A : set ℝ) := { x : ℝ | ∀ a ∈ A, a ≤ x}
 

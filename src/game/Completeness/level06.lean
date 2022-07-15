@@ -5,6 +5,16 @@ import game.Completeness.level04
 noncomputable theory
 open_locale classical
 
+/-
+# Chapter 6 : Completeness
+
+## Level 6  
+
+Prove that a nonempty and upper bounded 
+set has a unique least upper bound. 
+
+-/
+
 definition has_lub (S : set ℝ) := ∃ x, is_lub S x
 
 definition is_upper_bound (S : set ℝ) (x : ℝ) := ∀ s ∈ S, s ≤ x 

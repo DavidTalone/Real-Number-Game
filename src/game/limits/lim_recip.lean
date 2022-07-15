@@ -8,6 +8,40 @@ import game.limits.seq_limitProd
 import game.limits.Lemmas
 
 namespace xena -- hide
+/-
+# Chapter 7 : Limits
+
+## Level 12
+
+
+Prove the reciprocal property of limits. Good luck. 
+-/
+
+
+/-
+Lemma : stuff1 
+{a b : ℝ} (ha : a ≠ 0) (hb : b ≠ 0) : | ( 1 /a - 1 / b) | = | (b - a) / (a * b) |
+-/
+
+/-
+Lemma : stuff2 
+{a b : ℝ} (ha : a ≠ 0) (hb : b ≠ 0) :  | (b - a) / ( a * b) | = 1 / (|a| * |b|) * |a - b| 
+-/
+
+/-
+Lemma : stuff3
+{a b : ℝ} (ha : a ≠ 0) (hb : b ≠ 0) (pb : 0 < b) (c : a ≥ b) : 1 / a ≤ 1 / b 
+-/
+
+/-
+Lemma : stuff4
+{a b c : ℝ} (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0) (hab : a ≥ b) : 1 / (a * c) ≤ 1 / (b * c)
+-/
+
+/-
+Lemma : stuff5
+{a b c : ℝ} (ha : 0 < a) (hb : 0 ≤ b) (hc : 0 < c) (hbc : b < c)
+-/
 
 
 
@@ -68,8 +102,8 @@ begin
   have L505 : 0 < |b n|, linarith, 
   have L5051 : |k| ≠ 0, linarith, 
   have L51 : 0 < c * |k|, exact mul_pos y duh4, 
-  have FuckYou : 0 < (1 : ℝ), linarith, 
-  have L511 : 0 < 1 / (c * |k|), exact div_pos (FuckYou) (L51), 
+  have L5101 : 0 < (1 : ℝ), linarith, 
+  have L511 : 0 < 1 / (c * |k|), exact div_pos (L5101) (L51), 
   have L512 : 0 ≤ 1 / (c * |k|), exact lt_imp_le L511,   
   have L52 : 0 < |b n| * |k|, exact mul_pos L505 duh4,  
   have L6 : 1 / (|b n| * |k|) ≤ 1 / (c * |k|), exact stuff4 duh duh2 L5051 L3,      

@@ -8,6 +8,28 @@ import tactic
 
 namespace xena -- hide
 
+/-
+# Chapter 7 : Limits
+
+## Level 16
+
+
+Suppose that a sequence (a) is monotonically increasing. That is, ∀ (n : ℕ), a n ≤ a (n + 1). 
+Assume that the sequence is bounded above as well. That is, there exists a number x such that a n ≤ x for all n ∈ ℕ. 
+Prove that the sequence converges. 
+-/
+
+
+
+/- 
+Here, we need to use the axiom of choice, 
+which says that given any collection of bins, 
+each containing at least one object, 
+it is possible to construct a set by arbitrarily 
+choosing one object from each bin, even if the collection is infinite.
+
+-/
+
 theorem mono_incr_seq_sup {a : ℕ → ℝ} {S : set.range a} {x : ℝ} (ha : ∀ (n : ℕ), a n ≤ a (n + 1)) (h2 : is_lub (set.range a) x) : is_limit a x := 
 begin 
 rw is_limit, 

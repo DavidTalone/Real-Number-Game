@@ -23,12 +23,12 @@ will be useful in proving lim_mul.
 
 -/
 
-/- Hide
+/-
 Lemma : mul_div_mul_self
 {a b c : ℝ} (h1 : 0 < a) (h2 : 0 < c) :  (b * a) / (c * a) = b/ c
 -/
 
-/- Hide
+/-
 Lemma : so_obvious 
 {a b c d: ℝ} (hb : 0 < b) (hc : 0 < c): a * b + c * d < a * b + b + d * c + c
 -/

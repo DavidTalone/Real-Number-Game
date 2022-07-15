@@ -9,10 +9,12 @@ import tactic.linarith -- hide
 namespace xena -- hide
 
 /-
-# Chapter 8 : Limit Lemmas
+# Chapter 7 : Limits
 
-## Level 4
+## Level 8
 
+For this proof you will be proving that in the definition of a limit, |a n - α| < ε if and only
+if |a n - α| ≤ ε. 
 
 -/
 

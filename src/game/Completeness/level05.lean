@@ -8,127 +8,97 @@ import game.Completeness.level01
 noncomputable theory
 open_locale classical
 
+/-
+# Chapter 6 : Completeness
+
+## Level 5 
+
+
+Prove that b is the supremum of the set (a,b). 
+
+-/
+
 def upper_bound (A : set ℝ) (x : ℝ) := ∀ a ∈ A, a ≤ x
 def is_sup (A : set ℝ) (x : ℝ) := upper_bound A x ∧ ∀ y, upper_bound A y → x ≤ y
 
-theorem helper_lemma (x y : ℝ) (H : x < y) : x < (x + y) / 2 ∧ (x + y) / 2 < y :=
-begin
-  have two_ge_zero : (2 : ℝ) ≥ 0 := by norm_num,
-  split,
-  { apply lt_of_mul_lt_mul_right _ two_ge_zero,
-    rw [mul_two,div_mul_cancel],
-    apply add_lt_add_left H,
-    norm_num},
-  { apply lt_of_mul_lt_mul_right _ two_ge_zero,
-    rw [div_mul_cancel,mul_two],
-    apply add_lt_add_right H,
-    norm_num,
-  },
-end
+example (a b : ℝ) (h : a < b) : is_sup (set.Ioo a b) b := 
+begin 
+   
+     
+    unfold is_sup,
+    split, 
+    intro t, 
+    intro j,
+    rw set.Ioo at j,
+    cases j with d hd, 
+    exact le_of_lt hd, 
 
+    intro t, 
+    intro j, 
+    apply le_of_not_gt, 
+    intro k,
 
--- begin hide
--- these three helper results to go in sidebar
-lemma two_real_ne_zero : (2:ℝ) ≠ 0 :=
-begin
-    intro, linarith,
-end
+    rcases lt_trichotomy a t with han | haz | hap, 
+    have l : t + b < b + b, linarith, ring at l,
+    have l1 : (t + b) /2 < b, linarith, 
 
-lemma avg_lt_max {mn mx: ℝ} (H : mn < mx) : (mn+mx) / 2 < mx :=
-begin
-  apply (mul_lt_mul_right (show (0:ℝ)<2, by norm_num)).1,
-  rw [div_mul_cancel _ (two_real_ne_zero)],
-  simp [H,mul_two],
-end
+    have P : t + t < t + b, linarith, ring at l, 
+    have P1 : t  < (b + t) /2, linarith, 
+    have s : a < (t + b) / 2, linarith, 
 
-lemma min_lt_avg {mn mx: ℝ} (H : mn < mx) : mn < (mn+mx) / 2 :=
-begin
-  apply (mul_lt_mul_right (show (0:ℝ)<2, by norm_num)).1,
-  rw [div_mul_cancel _ (two_real_ne_zero)],
-  simp [H,mul_two],
-end
--- end hide
+   
+    have avgIn : a < (t + b)/2 ∧ (t + b)/2 < b, 
+    split, 
+    exact s, exact l1, 
 
-example (a b : ℝ) (h : a < b): is_sup (set.Ioo a b) b :=
-begin
-  unfold is_sup,
-  split,
-  intro t,
-  intro j,
-  rw set.Ioo at j,
-  cases j with d hd,
-  exact le_of_lt hd,
+    
 
-  intro t,
-  intro j,
-  apply le_of_not_gt,
-  intro k,
-  rcases lt_trichotomy a t with han | haz | hap,
-  have L : t + t < b + t, linarith, ring at L,
-  have L1 : (t + b) / 2 < b, linarith,
-  have P : t + b < b + b, linarith, ring at P,
-  have P1 : t < (t + b) / 2, linarith,
-  have s : a < (t + b) / 2, linarith,
-  
-  have avgIn : a < (t + b) / 2 ∧ (t + b) / 2 < b,
-  split,
-  exact s, exact L1,
+    have R : (t + b)/2 ∈ set.Ioo a b, 
+    split, 
+    exact s, exact l1,
 
-  have R : ((t + b) / 2) ∈ set.Ioo a b,
-  split,
-  exact s,
-  exact L1,
-  unfold upper_bound at j,
-  revert j,
-  contrapose!,
-  intro q,
-  use ((t + b) / 2),
-  split,
-  exact R,
-  exact P1,
+    unfold upper_bound at j, 
+    revert j, 
+    contrapose!, intro q, use (t + b)/2, split, 
+    exact R, linarith, 
 
-  have L : a + a < a + b, linarith, ring at L,
-  have L1 : a < (a + b) / 2, linarith,
-  have P : a + b < b + b, linarith, ring at P,
-  have P1 : (a + b) / 2 < b, linarith,
-  have s : a < (a + b) / 2, linarith,
-  
-  have avgIn : a < (a + b) / 2 ∧ (a + b) / 2 < b,
-  split,
-  exact s, exact P1,
+    
+    have l : a + a < a + b, linarith, ring at l, 
+    have l1 : (a + b) /2 < b, linarith,
 
-  have R : ((a + b) / 2) ∈ set.Ioo a b,
-  split,
-  exact s,
-  exact P1,
-  
+    have P : a + b < b + b, linarith, ring at P, 
+    have P1 : a  < (b + a) /2, linarith, 
+    have s : (a + b) /2 < b, linarith, 
 
-  unfold upper_bound at j,
-  revert j,
-  contrapose!,
-  intro q,
-  use ((a + b) / 2),
-  split,
-  exact R,
-  rw ← haz,
-  exact s,
+      have avgIn : a < (a + b)/2 ∧ (a + b)/2 < b,
+      split, linarith,
+    exact s, 
 
-  have L : a + a < a + b, linarith, ring at L,
-  have L1 : a < (a + b) / 2, linarith,
-  have P : a + b < b + b, linarith, ring at P,
-  have P1 : (a + b) / 2 < b, linarith,
-  have W : t < (a + b) / 2, linarith,
+    have R : (a + b)/2 ∈ set.Ioo a b, 
+    split, 
+    rw haz, 
+    rw haz at s, rw haz at P1, linarith, 
 
-  have R : ((a + b) / 2) ∈ set.Ioo a b,
-  split,
-  exact L1,
-  exact P1,
-  unfold upper_bound at j,
-  revert j,
-  contrapose!,
-  intro q,
-  use ((a + b) / 2),
-  split,
-  exact R,
-  exact W,
+    rw haz, rw haz at s, exact s, 
+    rw haz at R, 
+    unfold upper_bound at j, 
+    revert j, rw haz, 
+    contrapose!, intro q, use (t + b)/2, split, 
+    exact R, linarith,
+
+    have P : a + b < b + b, linarith, ring at P, 
+    have P1 : a  < (b + a) /2, linarith, 
+    have s : (a + b) /2 < b, linarith, 
+
+    have t1 : t < (b + a) /2, linarith, 
+    revert j, unfold upper_bound, contrapose!, intro f, 
+    use (a+b) /2, split, 
+    
+    have avgIn : a < (a + b)/2 ∧ (a + b)/2 < b,
+      split, linarith,
+    exact s, 
+
+    have R : (a+b)/2 ∈ set.Ioo a b, 
+    split, linarith, exact s, exact R, 
+    linarith,
 end

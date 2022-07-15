@@ -15,29 +15,22 @@ namespace xena
 noncomputable theory 
 open_locale classical  
 
-lemma inv_succ_pos : ∀ n : ℕ, 1/(n+1 : ℝ) > 0 :=
-begin
-  -- Let `n` be any integer
-  intro n,
-  -- Since we don't know the name of the relevant lemma, asserting that the inverse of
-  -- a positive number is positive, let's state that is suffices
-  -- to prove that `n+1`, seen as a real number, is positive, and ask `library_search`
-  suffices : (n + 1 : ℝ) > 0,
-  { library_search },
-  -- Now we want to reduce to a statement about natural numbers, not real numbers
-  -- coming from natural numbers.
-  norm_cast,
-  -- and then get the usual help from `linarith`
-  linarith,
-end
+/-
+# Chapter 6 : Completeness
+
+## Level 7  
 
 
+Prove the the supremum of the set {3 - 1 / n : n ∈ ℕ} is 3. 
 
+Hint: Try using tauto when the goal looks obvious.
+
+-/
 
 
 example (S : set ℝ) (H : S = {r | ∃ v ∈ ℕ, r  = 3 - 1/(v + 1 : ℝ)}) : is_sup S 3 := 
 begin 
- rw is_sup, 
+ rw is_sup,
  split, rw upper_bound, 
  intros h j, 
  rw le_iff_eq_or_lt, 
@@ -52,7 +45,7 @@ begin
  rw upper_bound,
  cases H with t ht,
  intro j, 
- apply j, tauto, 
+ apply j, tauto,
 
 
 end 

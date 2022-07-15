@@ -4,9 +4,9 @@ namespace xena -- hide
 -- World name : Sup and Inf
 
 /-
-# Chapter 3 : Sup and Inf
+# Chapter 6 : Sup and Inf
 
-## Level 2  
+## Level 4  
 
 -/
 

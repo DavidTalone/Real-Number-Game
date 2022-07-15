@@ -11,10 +11,20 @@ namespace xena -- hide
 local notation `|`x`|` := abs x
 
 /-
+# Chapter 7 : Limits
+
+## Level 7
+
 I don't even know where to begin with this proof. You're gonna need some luck.
 -/
 
-lemma lim_mul2 (a : ℕ → ℝ) (b : ℕ → ℝ) (L  R  : ℝ)
+/-
+lemma bounded_if_convergent (a : ℕ → ℝ)
+    (ha : is_convergent a ) : 
+    is_bounded a 
+-/
+
+lemma lim_mul (a : ℕ → ℝ) (b : ℕ → ℝ) (L  R  : ℝ)
     (ha : is_limit a L) (hb : is_limit b R ) : 
     is_limit ( λ n, (a n) * (b n) ) (L * R) :=
 begin

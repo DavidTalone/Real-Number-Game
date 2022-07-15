@@ -181,14 +181,14 @@ definition ev_bd_away_from_zero (b : ℕ → ℝ) :=
     apply lt_imp_le, exact O,    
  end  
 
- lemma stuff1 (a b : ℝ) (ha : a ≠ 0) (hb : b ≠ 0) : | ( 1 /a - 1 / b) | = | (b - a) / (a * b) |:= 
+ lemma stuff1 {a b : ℝ} (ha : a ≠ 0) (hb : b ≠ 0) : | ( 1 /a - 1 / b) | = | (b - a) / (a * b) |:= 
  begin 
  
   sorry,    
 
  end 
 
- lemma stuff2 (a b : ℝ) (ha : a ≠ 0) (hb : b ≠ 0) :  | (b - a) / ( a * b) | = 1 / (|a| * |b|) * |a - b| :=
+ lemma stuff2 {a b : ℝ} (ha : a ≠ 0) (hb : b ≠ 0) :  | (b - a) / ( a * b) | = 1 / (|a| * |b|) * |a - b| :=
  begin
   rcases lt_trichotomy a 0 with han | haz | hap,
   swap,
@@ -210,14 +210,16 @@ definition ev_bd_away_from_zero (b : ℕ → ℝ) :=
   rw mul_inv_cancel ha,
   rw mul_one,
   rw mul_one, 
-  
+  sorry,
+  sorry,
+  sorry,
 
 
  end 
 
  lemma stuff3 {a b : ℝ} (ha : a ≠ 0) (hb : b ≠ 0) (pb : 0 < b) (c : a ≥ b) : 1 / a ≤ 1 / b := 
  begin 
-  sorry, 
+  sorry,
  end 
 
 lemma stuff4 {a b c : ℝ} (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0) (hab : a ≥ b) : 1 / (a * c) ≤ 1 / (b * c) :=
@@ -228,7 +230,9 @@ end
 lemma stuff5 {a b c : ℝ} (ha : 0 < a) (hb : 0 ≤ b) (hc : 0 < c) (hbc : b < c) : 
 a * b < a * c := 
 begin
-  sorry, 
+  rw mul_lt_mul_left,
+  exact hbc,
+  exact ha, 
 end
 
 
